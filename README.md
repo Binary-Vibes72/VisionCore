@@ -60,7 +60,10 @@ processor = AutoProcessor.from_pretrained("HuggingFaceTB/SmolVLM2-256M-Video-Ins
 model = AutoModelForImageTextToText.from_pretrained(
     "HuggingFaceTB/SmolVLM2-256M-Video-Instruct",
     torch_dtype=torch.float32, 
-    device_map="cpu"  # Change to "cuda" if running on GPU
+
+    # Set device_map="cuda" to enable GPU acceleration on systems with CUDA-compatible hardware for optimized performance.
+    device_map="cpu" 
+    
 )
 
 # Sample image URL
@@ -94,6 +97,7 @@ generated_texts = processor.batch_decode(output_ids, skip_special_tokens=True)
 
 # Print the generated description
 print(generated_texts)
+
 ```
 
 ---
@@ -101,7 +105,7 @@ print(generated_texts)
 ## 📷 Example Output
 
 ```bash
-['The image shows a woman wearing a hat and smiling outdoors, possibly during sunset or golden hour.']
+['The image depicts a young woman walking two dogs on a city street. The woman is dressed in a black and white striped top, which contrasts with her attire. She is wearing a yellow backpack, and her hair is long and dark. She is holding a red leash in her right hand, which is attached to a black leash. The leash is attached to a black harness, which is attached to a black harness. The woman is walking on a sidewalk, and there are several other people in the background, including a person wearing a black shirt and another person wearing a black jacket. The street is lined with buildings, including a']
 ```
 
 ---
